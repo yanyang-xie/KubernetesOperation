@@ -1,0 +1,36 @@
+{
+    "kind": "ReplicationController", 
+    "spec": {
+        "selector": {
+            "app": "blackbox-exporter"
+        }, 
+        "template": {
+            "spec": {
+                "containers": [
+                    {
+                        "image": "prom/blackbox-exporter", 
+                        "name": "blackbox", 
+                        "ports": [
+                            {
+                                "containerPort": 9115, 
+                                "name": "blackbox"
+                            }
+                        ]
+                    }
+                ]
+            }, 
+            "metadata": {
+                "labels": {
+                    "app": "blackbox-exporter"
+                }, 
+                "name": "blackbox-exporter"
+            }
+        }, 
+        "replicas": 2
+    }, 
+    "apiVersion": "v1", 
+    "metadata": {
+        "namespace": "my-ns", 
+        "name": "blackbox-exporter"
+    }
+}
